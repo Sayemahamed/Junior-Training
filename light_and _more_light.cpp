@@ -4,22 +4,24 @@ int main()
 {
     while (true)
     {
-        unsigned long long int n,count=0;
-        for(unsigned long long int i=2; i*i<=n; ++i)
+        map<long long,long long>data;
+        long long x,ans=1;
+        cin >> x;
+        if(!x)break;
+        for(long long i = 2; i*i <=x; i++)
         {
-            while(n%i==0)
+            while(!(x%i))
             {
-                count++;
-                n=n/i;
+                data[i]++;
+                x/=i;
             }
         }
-        cin >> n;
-        if(n==0) break;
-        if(n>1)
+        if(x>1)data[x]++;
+        for(auto it:data)
         {
-            count++;
+            ans*=(it.second+1)%1000000007;
         }
-        if(count%2)
+        if(x&1)
         cout<<"no"<<endl;
         else
         cout<<"yes"<<endl;
