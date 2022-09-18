@@ -1,33 +1,28 @@
 #include<bits/stdc++.h>
 using namespace std;
-string multiplyTwoNumbers(string num1, string num2) {
-   if (num1 == "0" || num2 == "0") {
-      return "0";
-   }
-   string product(num1.size() + num2.size(), 0);
-   for (int i = num1.size() - 1; i >= 0; i--) {
-      for (int j = num2.size() - 1; j >= 0; j--) {
-            int n = (num1[i] - '0') * (num2[j] - '0') + product[i + j + 1];
-            product[i + j + 1] = n % 10;
-            product[i + j] += n / 10;
-      }
-   }
-   for (int i = 0; i < product.size(); i++) {
-      product[i] += '0';
-   }
-   if (product[0] == '0') {
-      return product.substr(1);
-   }
-   return product;
-}
-
+const long long Mx=600;
 int main()
 {
-    while (true)
-    {
-        string s1,s2;
-        string ans(s1.length()+s2.length(),9);
-        cin >> s1 >> s2;
-        cout<<ans<<endl;
-    }
+   string s1, s2;
+   while (cin >> s1)
+   {
+      cin >> s2;
+      long long arr[Mx];
+      memset(arr, -1, sizeof(arr));
+      for (long long i = 0; i <s1.length(); i++)
+      for(long long j = 0; j <s2.length(); j++)
+      {
+         if( arr[i+j]==-1)arr[i+j]=0;
+         arr[i+j]+=(s1[i]-'0')*(s2[j]-'0');
+      }
+      long long index=Mx-1;
+      while(index>0&&arr[index]==-1)index--;
+      for(long long i=index; i>0; i--)
+      {
+         arr[i-1]+=arr[i]/10;
+         arr[i]=arr[i]%10;
+      }
+      for(long long i=0; i<=index; i++)cout<<arr[i];
+      cout<<endl;
+   }
 }
