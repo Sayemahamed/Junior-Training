@@ -22,7 +22,12 @@ int main()
          arr[i-1]+=arr[i]/10;
          arr[i]=arr[i]%10;
       }
-      for(long long i=0; i<=index; i++)cout<<arr[i];
+      long long it=0;
+      while(arr[it]==0)
+      {
+         it+=1;
+      }
+      for(long long i=it; i<=index; i++)cout<<arr[i];
       cout<<endl;
    }
 }
